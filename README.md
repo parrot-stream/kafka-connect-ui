@@ -1,31 +1,29 @@
-# kafka-connect-ui
+# Kafka Connect UI
 
-[![release](http://github-release-version.herokuapp.com/github/landoop/kafka-connect-ui/release.svg?style=flat)](https://github.com/landoop/kafka-connect-ui/releases/latest)
-[![docker](https://img.shields.io/docker/pulls/landoop/kafka-connect-ui.svg?style=flat)](https://hub.docker.com/r/landoop/kafka-connect-ui/)
-[![Join the chat at https://gitter.im/Landoop/support](https://img.shields.io/gitter/room/nwjs/nw.js.svg?maxAge=2592000)](https://gitter.im/Landoop/support?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-This is a web tool for Kafka Connect for setting up and managing connectors for multiple connect clusters.
-
-## Live Demo
-[kafka-connect-ui.landoop.com](http://kafka-connect-ui.landoop.com)
+This is the source fork of a web tool for Kafka Connect for setting up and managing connectors for multiple connect clusters.
 
 ## Run standalone with docker
 
 ```
 docker run --rm -it -p 8000:8000 \
            -e "CONNECT_URL=http://connect.distributed.url" \
-           landoop/kafka-connect-ui
+           parrot/kafka-connect-ui
 ```
 
 The CONNECT_URL can be a comma separated array of Connect worker endpoints. E.g: CONNECT_URL=http://connect.1.url,http://connect.2.url"
 
 Web UI will be available at `http://localhost:8000`
 
+## Run standalone with docker-compose
+
+```
+docker-compose -f docker/docker-compose.yml up
+```
 
 ## Build from source
 
 ```
-    git clone https://github.com/Landoop/kafka-connect-ui.git
+    git clone https://github.com/parrotcdc/kafka-connect-ui.git
     cd kafka-connect-ui
     npm install
     http-server .
@@ -66,14 +64,14 @@ var clusters = [
 ]
 
 ```
-* Use `KAFKA_TOPICS_UI` and `KAFKA_TOPICS_UI_ENABLED` to navigate to the relevant topic when you have [kafka-topics-ui](https://github.com/Landoop/kafka-topics-ui) installed.
+* Use `KAFKA_TOPICS_UI` and `KAFKA_TOPICS_UI_ENABLED` to navigate to the relevant topic when you have [kafka-topics-ui](https://github.com/parrotcdc/kafka-topics-ui) installed.
 * Use `COLOR` to set different header colors for each set up cluster.
 
 ### Supported Connectors
-For our [DM connectors](http://www.landoop.com/capabilities/kafka-connectors/)  we have a template of metadata within the `supported-connectors.js`. In any case you will be shown all the existing connectors in your classpath with all the required fields to set them up.
+There is a template of metadata within the `supported-connectors.js`: in any case you will be shown all the existing connectors in your classpath with all the required fields to set them up.
 
 ## Changelog
-[Here](https://github.com/Landoop/kafka-connect-ui/releases)
+[Here](https://github.com/parrotcdc/kafka-connect-ui/releases)
 
 ## License
 
@@ -81,11 +79,5 @@ The project is licensed under the [BSL](http://www.landoop.com/bsl) license.
 
 ## Relevant Projects
 
-* [schema-registry-ui](https://github.com/Landoop/schema-registry-ui), View, create, evolve and manage your Avro Schemas on your Kafka cluster
-* [kafka-topics-ui](https://github.com/Landoop/kafka-topics-ui), UI to browse Kafka data and work with Kafka Topics                   
-* [fast-data-dev](https://github.com/Landoop/fast-data-dev), Docker for Kafka developers (schema-registry,kafka-rest,zoo,brokers,landoop) 
-* [Landoop-On-Cloudera](https://github.com/Landoop/Landoop-On-Cloudera), Install and manage your kafka streaming-platform on you Cloudera CDH cluster
-
-
-
-<img src="http://www.landoop.com/images/landoop-dark.svg" width="13"> www.landoop.com
+* [Schema Registry UI](https://github.com/parrotcdc/schema-registry-ui), View, create, evolve and manage your Avro Schemas on your Kafka cluster
+* [Kafka Topics UI](https://github.com/parrotcdc/kafka-topics-ui), UI to browse Kafka data and work with Kafka Topics                   

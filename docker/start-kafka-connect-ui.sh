@@ -23,7 +23,7 @@ for cluster in $CONNECT_URL; do
     let "NUM_CLUSTER+=1"
     if [[ "$NUM_CLUSTER" == 1 ]]; then
         OPEN_CURL="{"
-        cat <<EOF >/kafka-connect-ui/env.js
+        cat <<EOF >/kafka-connect-ui/dist/env.js
 var clusters = [
 EOF
     fi
@@ -34,7 +34,7 @@ proxy $CONNECT_PROXY-$NUM_CLUSTER $cluster {
 }
 EOF
 
-    cat <<EOF >>/kafka-connect-ui/env.js
+    cat <<EOF >>/kafka-connect-ui/dist/env.js
    $OPEN_CURL
      NAME: "connect-$NUM_CLUSTER",
      KAFKA_CONNECT: "$CONNECT_PROXY-$NUM_CLUSTER"
@@ -42,7 +42,7 @@ EOF
 EOF
 
 done
-echo "]" >> /kafka-connect-ui/env.js
+echo "]" >> /kafka-connect-ui/dist/env.js
 
 echo
 
