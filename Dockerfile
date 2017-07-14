@@ -43,7 +43,7 @@ RUN chmod o=rx /*.sh; \
     chmod o=rxw /caddy
 RUN chown parrot:parrot /kafka-connect-ui/logs
 
-#USER parrot
+USER parrot
 
 EXPOSE 8000
 
