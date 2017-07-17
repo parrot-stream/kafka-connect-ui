@@ -80,4 +80,4 @@ The project is licensed under the [BSL](http://www.landoop.com/bsl) license.
 ## Relevant Projects
 
 * [Schema Registry UI](https://github.com/parrotcdc/schema-registry-ui), View, create, evolve and manage your Avro Schemas on your Kafka cluster
-* [Kafka Topics UI](https://github.com/parrotcdc/kafka-topics-ui), UI to browse Kafka data and work with Kafka Topics                   
+* [Kafka Topics UI](https://github.com/parrotcdc/kafka-topics-ui), UI to browse Kafka data and work with Kafka Topics

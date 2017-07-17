@@ -1,16 +1,136 @@
 var supportedConnectorsTemplates = [
  {
-  name: "Twitter",
-  icon: 'twitter.png',
-  description: 'Use the Twitter API to stream data into Kafka',
+  name: "MySql (Debezium)",
+  icon: 'mysql.png',
+  description: 'MySql CDC: capture data changes on MySql source',
   type: "Source",
   uiEnabled: true,
   color: "#1da1f3",
-  class: "com.eneco.trading.kafka.connect.twitter.TwitterSourceConnector",
-  docs: "com.eneco.trading.kafka.connect.twitter.TwitterSourceConnector.html"
+  class: "io.debezium.connector.mysql.MySqlConnector",
+  docs: "io.debezium.connector.mysql.MySqlConnector.html"
  },
  {
-  name: "Yahoo Finance",
+  name: "MongoDB (Debezium)",
+  icon: 'mongodb.png',
+  description: 'MongoDB CDC: capture data changes on MongoDB source',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "io.debezium.connector.mongodb.MongoDbConnector",
+  docs: "io.debezium.connector.mongodb.MongoDbConnector.html"
+ },
+ {
+  name: "PostgreSql (Debezium)",
+  icon: 'postgres.png',
+  description: 'PostgreSql CDC: capture data changes on PostgreSql source',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "io.debezium.connector.postgresql.PostgresConnector",
+  docs: "io.debezium.connector.postgresql.PostgresConnector.html"
+ },
+ {
+  name: "Amazon Kinesis (Confluent - jcustenborder)",
+  icon: 'kinesis.png',
+  description: 'Kafka Connect connector for Amazon Kinesis',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.github.jcustenborder.kafka.connect.kinesis.KinesisSourceConnector",
+  docs: "com.github.jcustenborder.kafka.connect.kinesis.KinesisSourceConnector.html"
+ },
+ {
+  name: "Salesforce (Confluent - jcustenborder)",
+  icon: 'salesforce.png',
+  description: 'Kafka Connect connector for reading data in real time from salesforce.com',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.github.jcustenborder.kafka.connect.salesforce.SalesforceSourceConnector",
+  docs: "com.github.jcustenborder.kafka.connect.salesforce.SalesforceSourceConnector.html"
+ },
+ {
+  name: "RabbitMQ (Confluent - jcustenborder)",
+  icon: 'rabbitmq.svg',
+  description: 'Kafka Connect connector for RabbitMQ',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.github.jcustenborder.kafka.connect.rabbitmq.RabbitMQSourceConnector",
+  docs: "com.github.jcustenborder.kafka.connect.rabbitmq.RabbitMQSourceConnector.html"
+ },
+ {
+  name: "Splunk (Confluent - jcustenborder)",
+  icon: 'splunk.png',
+  description: 'Kafka Connect connector for receiving data from Splunk',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.github.jcustenborder.kafka.connect.splunk.SplunkHttpSourceConnector",
+  docs: "com.github.jcustenborder.kafka.connect.splunk.SplunkHttpSourceConnector.html"
+ },
+ {
+  name: "Syslog SSLTCP (Confluent - jcustenborder)",
+  icon: 'connector.jpg',
+  description: 'Kafka Connect connector for receiving syslog data',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.github.jcustenborder.kafka.connect.syslog.SSLTCPSyslogSourceConnector",
+  docs: "com.github.jcustenborder.kafka.connect.syslog.SSLTCPSyslogSourceConnector.html"
+ },
+ {
+  name: "Syslog TCP (Confluent - jcustenborder)",
+  icon: 'connector.jpg',
+  description: 'Kafka Connect connector for receiving syslog data',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.github.jcustenborder.kafka.connect.syslog.TCPSyslogSourceConnector",
+  docs: "com.github.jcustenborder.kafka.connect.syslog.TCPSyslogSourceConnector.html"
+ },
+ {
+  name: "Syslog UDP (Confluent - jcustenborder)",
+  icon: 'connector.jpg',
+  description: 'Kafka Connect connector for receiving syslog data',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.github.jcustenborder.kafka.connect.syslog.UDPSyslogSourceConnector",
+  docs: "com.github.jcustenborder.kafka.connect.syslog.UDPSyslogSourceConnector.html"
+ },
+ {
+  name: "Spool Dir - CSV (Confluent - jcustenborder)",
+  icon: 'csv.png',
+  description: 'Kafka Connect connector for reading CSV files into Kafka',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.github.jcustenborder.kafka.connect.spooldir.SpoolDirCsvSourceConnector",
+  docs: "com.github.jcustenborder.kafka.connect.spooldir.SpoolDirCsvSourceConnector.html"
+ },
+ {
+  name: "Spool Dir - JSON (Confluent - jcustenborder)",
+  icon: 'json.png',
+  description: 'Kafka Connect connector for reading JSON files into Kafka',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.github.jcustenborder.kafka.connect.spooldir.SpoolDirJsonSourceConnector",
+  docs: "com.github.jcustenborder.kafka.connect.spooldir.SpoolDirJsonSourceConnector.html"
+ },
+ {
+  name: "Twitter (Confluent - jcustenborder)",
+  icon: 'twitter.png',
+  description: 'Kafka Connect connector to stream data in real time from Twitter',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.github.jcustenborder.kafka.connect.twitter.TwitterSourceConnector",
+  docs: "com.github.jcustenborder.kafka.connect.twitter.TwitterSourceConnector.html"
+ },
+ {
+  name: "Yahoo Finance (DataMountaineer)",
   type: "Source",
   icon: "yahoofinance.png",
   description: "Stream stock and currency exchange rates into Kafka",
@@ -20,7 +140,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.yahoo.source.YahooSourceConnector.html"
  },
  {
-  name: "File",
+  name: "File (Apache Kafka)",
   icon: "file.png",
   description: "Tail files or folders and stream data into Kafka",
   type: "Source",
@@ -30,7 +150,17 @@ var supportedConnectorsTemplates = [
   docs: "org.apache.kafka.connect.file.FileStreamSourceConnector.html"
  },
  {
-   name: "Ftp",
+  name: "File System",
+  icon: "fs.png",
+  description: "Tail files or folders and stream data into Kafka",
+  type: "Source",
+  uiEnabled: true,
+  color: "#bbb2b2",
+  class: "com.github.mmolimar.kafka.connect.fs.FsSourceConnector",
+  docs: "com.github.mmolimar.kafka.connect.fs.FsSourceConnector.html"
+ },
+ {
+   name: "Ftp (DataMountaineer)",
    icon: "ftp.png",
    description: "Tail remote FTP folders and bring messages in Kafka",
    type: "Source",
@@ -40,7 +170,7 @@ var supportedConnectorsTemplates = [
    docs: "com.datamountaineer.streamreactor.connect.ftp.FtpSourceConnector.html"
  },
  {
-  name: "Blockchain",
+  name: "Blockchain (DataMountaineer)",
   icon: "blockchain-logo.jpg",
   description: "Get blockchain.info data into Kafka",
   type: "Source",
@@ -50,7 +180,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.blockchain.source.BlockchainSourceConnector.html"
  },
  {
-  name: "Jdbc",
+  name: "Jdbc (Confluent)",
   icon: "database.png",
   description: "Stream data from SQL server into Kafka",
   type: "Source",
@@ -60,7 +190,7 @@ var supportedConnectorsTemplates = [
   docs: "io.confluent.connect.jdbc.JdbcSourceConnector.html",
  },
  {
-  name: "Cassandra",
+  name: "Cassandra (DataMountaineer)",
   icon: "cassandra.jpg",
   description: "Extract Cassandra data using the CQL driver into Kafka",
   uiEnabled: true,
@@ -70,7 +200,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.cassandra.source.CassandraSourceConnector.html",
  },
  {
-  name: "Bloomberg",
+  name: "Bloomberg (DataMountaineer)",
   icon: "bloomberg.png",
   description: "Use the Bloomberg API to stream data into Kafka",
   type: "Source",
@@ -80,7 +210,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.bloomberg.BloombergSourceConnector.html"
  },
  {
-  name: "JMS",
+  name: "JMS (DataMountaineer)",
   icon: "jms.png",
   description: "Get data from JMS into Kafka",
   type: "Source",
@@ -90,7 +220,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.jms.source.JMSSourceConnector.html"
  },
  {
-  name: "MQTT",
+  name: "MQTT (DataMountaineer)",
   icon: "mqtt.png",
   description: "Read data from MQTT and write them into Kafka",
   type: "Source",
@@ -100,7 +230,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.mqtt.source.MqttSourceConnector.html",
  },
  {
-  name: "RethinkDB",
+  name: "RethinkDB (DataMountaineer)",
   type: "Source",
   icon: "rethink.png",
   description: "Source records from RethinkDB into Kafka",
@@ -110,7 +240,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.rethink.source.ReThinkSourceConnector.html",
  },
  {
-  name: "CoAP",
+  name: "CoAP (DataMountaineer)",
   type: "Source",
   icon: "coap.png",
   description: "Get Constrained Application Protocol data into Kafka",
@@ -120,7 +250,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.coap.source.CoapSourceConnector.html",
  },
  {
-  name: "Schemas",
+  name: "Schemas (Confluent)",
   type: "Source",
   icon: "avro.svg",
   description: "Store Avro schemas in HDFS",
@@ -130,7 +260,7 @@ var supportedConnectorsTemplates = [
   docs: "io.confluent.connect.hdfs.tools.SchemaSourceConnector.html",
  },
  {
-  name: "Schemas",
+  name: "Schemas (Confluent)",
   type: "Source",
   icon: "avro.svg",
   description: "Get Avro schemas into Kafka",
@@ -140,7 +270,7 @@ var supportedConnectorsTemplates = [
   docs: "io.confluent.connect.storage.tools.SchemaSourceConnector.html",
  },
  {
-  name: "Kafka Replicator",
+  name: "Kafka Replicator (Confluent)",
   type: "Source",
   icon: "replicate.png",
   description: "Replicate data to another Kafka cluster",
@@ -149,11 +279,78 @@ var supportedConnectorsTemplates = [
   class: "io.confluent.connect.replicator.ReplicatorSourceConnector",
   docs: "io.confluent.connect.replicator.ReplicatorSourceConnector.html",
  },
-
-
-
  {
-  name: "Elastic Search",
+  name: "HANA",
+  icon: 'sap.png',
+  description: 'Kafka Connect connector for SAP HANA',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.sap.kafka.connect.source.hana.HANASourceConnector",
+  docs: "com.sap.kafka.connect.source.hana.HANASourceConnector.html"
+ },
+ {
+  name: "DynamoDB",
+  icon: 'dynamodb.svg',
+  description: 'Kafka Connect connector for DynamoDB',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "dynamok.source.DynamoDbSourceConnector",
+  docs: "dynamok.source.DynamoDbSourceConnector.html"
+ },
+ {
+  name: "Ignite (Apache Ignite)",
+  icon: 'ignite.png',
+  description: 'Kafka Connect connector for Apache Ignite',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "org.apache.ignite.stream.kafka.connect.IgniteSourceConnector",
+  docs: "org.apache.ignite.stream.kafka.connect.IgniteSourceConnector.html"
+ },
+ {
+  name: "Couchbase",
+  icon: 'couchbase.svg',
+  description: 'Kafka Connect connector for Couchbase',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.couchbase.connect.kafka.CouchbaseSourceConnector",
+  docs: "com.couchbase.connect.kafka.CouchbaseSourceConnector.html"
+ },
+ {
+  name: "Oracle (DbVisit)",
+  icon: 'oracle.png',
+  description: 'Kafka Connect connector for Oracle',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.dbvisit.replicate.kafkaconnect.ReplicateSourceConnector",
+  docs: "com.dbvisit.replicate.kafkaconnect.ReplicateSourceConnector.html"
+ },
+ {
+  name: "NATS",
+  icon: 'nats.png',
+  description: 'Kafka Connect connector for NATS',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.oyst.kafka.connect.nats.NatsSourceConnector",
+  docs: "com.oyst.kafka.connect.nats.NatsSourceConnector.html"
+ },
+ {
+  name: "Google Pub/Sub (Google)",
+  icon: 'pubsub.png',
+  description: 'Kafka Connect connector for Google Pub/Sub',
+  type: "Source",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.google.pubsub.kafka.source.CloudPubSubSourceConnector",
+  docs: "com.google.pubsub.kafka.source.CloudPubSubSourceConnector.html"
+ },
+ {
+  name: "Elastic Search (DataMountaineer)",
   color: "#5CB85C",
   icon: "elastic.png",
   description: "Write data from Kafka to Elastic Search",
@@ -163,7 +360,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.elastic.ElasticSinkConnector.html",
  },
  {
-  name: "Cassandra",
+  name: "Cassandra (DataMountaineer)",
   icon: "cassandra.jpg",
   description: "Store Kafka data into Cassandra",
   uiEnabled: true,
@@ -173,7 +370,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.cassandra.sink.CassandraSinkConnector.html",
  },
  {
-  name: "InfluxDB",
+  name: "InfluxDB (DataMountaineer)",
   icon: "influxdb.jpg",
   description: "Store Kafka data into InfluxDB",
   uiEnabled: true,
@@ -183,7 +380,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.influx.InfluxSinkConnector.html",
  },
  {
-  name: "MongoDB",
+  name: "MongoDB (DataMountaineer)",
   type: "Sink",
   icon: "mongodb.png",
   description: "Write Kafka data into MongoDB",
@@ -193,7 +390,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.mongodb.sink.MongoSinkConnector.html",
  },
  {
-  name: "HazelCast",
+  name: "HazelCast (DataMountaineer)",
   type: "Sink",
   description: "Store Kafka data into HazelCast (RingBuffer)",
   icon: "hazelcast.png",
@@ -203,7 +400,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.hazelcast.sink.HazelCastSinkConnector.html",
  },
  {
-  name: "Jdbc",
+  name: "Jdbc (Confluent)",
   icon: 'database.png',
   description: 'Store Kafka data into SQL',
   type: "Sink",
@@ -213,7 +410,7 @@ var supportedConnectorsTemplates = [
   docs: "io.confluent.connect.jdbc.JdbcSinkConnector.html",
  },
  {
-  name: "Amazon S3",
+  name: "Amazon S3 (Confluent)",
   type: "Sink",
   icon: "s3.png",
   description: "Store Kafka data into Amazon S3",
@@ -223,7 +420,7 @@ var supportedConnectorsTemplates = [
   docs: "io.confluent.connect.s3.S3SinkConnector.html",
  },
  {
-  name: "DocumentDB",
+  name: "DocumentDB (DataMountaineer)",
   type: "Sink",
   icon: "documentdb.png",
   description: "Write Kafka data into Azure Document DB",
@@ -233,7 +430,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.azure.documentdb.sink.DocumentDbSinkConnector.html",
  },
  {
-  name: "Redis",
+  name: "Redis (DataMountaineer)",
   icon: 'redis.png',
   description: 'Store Kafka data into Redis Sorted Sets/Key-Value',
   type: "Sink",
@@ -243,7 +440,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.redis.sink.RedisSinkConnector.html",
  },
  {
-  name: "Kudu",
+  name: "Kudu (DataMountaineer)",
   icon: 'kudu.png',
   type: "Sink",
   description: "Write Kafka data into Kudu",
@@ -253,7 +450,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.kudu.sink.KuduSinkConnector.html",
  },
  {
-  name: "JMS",
+  name: "JMS (DataMountaineer)",
   type: "Sink",
   icon: "jms.png",
   description: "Store Kafka data into a JMS topic/queue",
@@ -263,7 +460,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.jms.sink.JMSSinkConnector.html",
  },
  {
-  name: "HDFS",
+  name: "HDFS (Confluent)",
   type: "Sink",
   description: "Write Kafka data into HDFS",
   icon: "hdfs.png",
@@ -272,7 +469,7 @@ var supportedConnectorsTemplates = [
   class: "io.confluent.connect.hdfs.HdfsSinkConnector",
   docs: "io.confluent.connect.hdfs.HdfsSinkConnector.html",
  }, {
-  name: "VoltDB",
+  name: "VoltDB (DataMountaineer)",
   type: "Sink",
   icon: "voltdb.png",
   uiEnabled: true,
@@ -282,7 +479,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.voltdb.VoltSinkConnector.html",
  },
  {
-  name: "File",
+  name: "File (Apache Kafka)",
   icon: "file.png",
   description: "Store Kafka data into files",
   type: "Sink",
@@ -292,7 +489,7 @@ var supportedConnectorsTemplates = [
   docs: "org.apache.kafka.connect.file.FileStreamSinkConnector.html",
  },
  {
-  name: "CoAP",
+  name: "CoAP (DataMountaineer)",
   type: "Sink",
   icon: "coap.png",
   description: "Transfer Kafka data into Constrained Application Protocol service",
@@ -302,7 +499,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.coap.sink.CoapSinkConnector.html",
  },
  {
-  name: "HBase",
+  name: "HBase (DataMountaineer)",
   icon: "hbase.svg",
   type: "Sink",
   description: "Write Kafka data into HBase",
@@ -312,7 +509,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.hbase.HbaseSinkConnector.html",
  },
  {
-  name: "RethinkDB",
+  name: "RethinkDB (DataMountaineer)",
   type: "Sink",
   icon: "rethink.png",
   description: "Store Kafka data into RethinkDb",
@@ -322,7 +519,7 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.rethink.sink.ReThinkSinkConnector.html",
  },
  {
-  name: "ElasticSearch (confluent)",
+  name: "ElasticSearch (Confluent)",
   type: "Sink",
   icon: "elastic.png",
   description: "Write Kafka data into Elastic Search",
@@ -331,7 +528,7 @@ var supportedConnectorsTemplates = [
   class: "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
   docs: "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector.html",
  }, {
-  name: "Druid",
+  name: "Druid (DataMountaineer)",
   type: "Sink",
   icon: "druid.png",
   description: "Write Kafka data into Apache Druid Search",
@@ -341,14 +538,114 @@ var supportedConnectorsTemplates = [
   docs: "com.datamountaineer.streamreactor.connect.druid.DruidSinkConnector.html",
  },
  {
-  name: "Twitter",
+  name: "Http Solr (Confluent - jcustenborder)",
+  icon: 'solr.png',
+  description: 'Kafka Connect connector for Solr using direct HTTP access',
   type: "Sink",
-  icon: "twitter.png",
-  description: "Push Kafka events to Twitter",
   uiEnabled: true,
-  color: "#4A3A41",
-  class: "com.eneco.trading.kafka.connect.twitter.TwitterSinkConnector",
-  docs: "com.eneco.trading.kafka.connect.twitter.TwitterSinkConnector.html",
+  color: "#1da1f3",
+  class: "com.github.jcustenborder.kafka.connect.solr.HttpSolrSinkConnector",
+  docs: "com.github.jcustenborder.kafka.connect.solr.HttpSolrSinkConnector.html"
+ },
+ {
+  name: "Http Solr (Confluent - jcustenborder)",
+  icon: 'solr.png',
+  description: 'Kafka Connect connector for Solr using direct HTTP access',
+  type: "Sink",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.github.jcustenborder.kafka.connect.solr.CloudSolrSinkConnector",
+  docs: "com.github.jcustenborder.kafka.connect.solr.CloudSolrSinkConnector.html"
+ },
+ {
+  name: "HANA",
+  icon: 'sap.png',
+  description: 'Kafka Connect connector for SAP HANA',
+  type: "Sink",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.sap.kafka.connect.sink.hana.HANASinkConnector",
+  docs: "com.sap.kafka.connect.sink.hana.HANASinkConnector.html"
+ },
+ {
+  name: "DynamoDB",
+  icon: 'dynamodb.svg',
+  description: 'Kafka Connect connector for DynamoDB',
+  type: "Sink",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "dynamok.sink.DynamoDbSinkConnector",
+  docs: "dynamok.sink.DynamoDbSinkConnector.html"
+ },
+ {
+  name: "Ignite (Apache Ignite)",
+  icon: 'ignite.png',
+  description: 'Kafka Connect connector for Apache Ignite',
+  type: "Sink",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "org.apache.ignite.stream.kafka.connect.IgniteSinkConnector",
+  docs: "org.apache.ignite.stream.kafka.connect.IgniteSinkConnector.html"
+ },
+ {
+  name: "PubNub",
+  icon: 'pubnub.png',
+  description: 'Kafka Connect connector for PubNub',
+  type: "Sink",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.segence.kafka.connect.pubnub.PubNubSinkConnector",
+  docs: "com.segence.kafka.connect.pubnub.PubNubSinkConnector.html"
+ },
+ {
+  name: "Splunk (Confluent - jcustenborder)",
+  icon: 'splunk.png',
+  description: 'Kafka Connect connector for sending data to Splunk',
+  type: "Sink",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.github.jcustenborder.kafka.connect.splunk.SplunkHttpSinkConnector",
+  docs: "com.github.jcustenborder.kafka.connect.splunk.SplunkHttpSinkConnector.html"
+ },
+ {
+  name: "MongoDB",
+  type: "Sink",
+  icon: "mongodb.png",
+  description: "Write Kafka data into MongoDB",
+  color: "#609959",
+  uiEnabled: true,
+  class: "org.radarcns.mongodb.MongoDbSinkConnector",
+  docs: "org.radarcns.mongodb.MongoDbSinkConnector.html",
+ },
+ {
+  name: "NATS",
+  icon: 'nats.png',
+  description: 'Kafka Connect connector for NATS',
+  type: "Sink",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.oyst.kafka.connect.nats.NatsSinkConnector",
+  docs: "com.oyst.kafka.connect.nats.NatsSinkConnector.html"
+ },
+ {
+  name: "Google Pub/Sub (Google)",
+  icon: 'pubsub.png',
+  description: 'Kafka Connect connector for Google Pub/Sub',
+  type: "Sink",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "com.google.pubsub.kafka.sink.CloudPubSubSinkConnector",
+  docs: "com.google.pubsub.kafka.sink.CloudPubSubSinkConnector.html"
+ },
+ {
+  name: "Kudu (Parrot)",
+  icon: 'kudu.png',
+  description: 'Kafka Connect connector for Kudu',
+  type: "Sink",
+  uiEnabled: true,
+  color: "#1da1f3",
+  class: "io.parrot.kafka.connect.kudu.KuduSinkConnector",
+  docs: "io.parrot.kafka.connect.kudu.KuduSinkConnector.html"
  }
 ];
 
