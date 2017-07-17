@@ -23,7 +23,7 @@ docker-compose -f docker/docker-compose.yml up
 ## Build from source
 
 ```
-    git clone https://github.com/parrotcdc/kafka-connect-ui.git
+    git clone https://github.com/parrotstream/kafka-connect-ui.git
     cd kafka-connect-ui
     npm install
     http-server .
@@ -64,14 +64,14 @@ var clusters = [
 ]
 
 ```
-* Use `KAFKA_TOPICS_UI` and `KAFKA_TOPICS_UI_ENABLED` to navigate to the relevant topic when you have [kafka-topics-ui](https://github.com/parrotcdc/kafka-topics-ui) installed.
+* Use `KAFKA_TOPICS_UI` and `KAFKA_TOPICS_UI_ENABLED` to navigate to the relevant topic when you have [kafka-topics-ui](https://github.com/parrot-stream/kafka-topics-ui) installed.
 * Use `COLOR` to set different header colors for each set up cluster.
 
 ### Supported Connectors
 There is a template of metadata within the `supported-connectors.js`: in any case you will be shown all the existing connectors in your classpath with all the required fields to set them up.
 
 ## Changelog
-[Here](https://github.com/parrotcdc/kafka-connect-ui/releases)
+[Here](https://github.com/parrot-stream/kafka-connect-ui/releases)
 
 ## License
 
@@ -79,5 +79,5 @@ The project is licensed under the [BSL](http://www.landoop.com/bsl) license.
 
 ## Relevant Projects
 
-* [Schema Registry UI](https://github.com/parrotcdc/schema-registry-ui), View, create, evolve and manage your Avro Schemas on your Kafka cluster
-* [Kafka Topics UI](https://github.com/parrotcdc/kafka-topics-ui), UI to browse Kafka data and work with Kafka Topics
+* [Schema Registry UI](https://github.com/parrot-stream/schema-registry-ui), View, create, evolve and manage your Avro Schemas for multiple Kafka clusters
+* [Kafka Connect UI](https://github.com/parrot-stream/kafka-connect-ui), Set up and manage connectors for multiple connect clusters
