@@ -644,8 +644,8 @@ var supportedConnectorsTemplates = [
   type: "Sink",
   uiEnabled: true,
   color: "#1da1f3",
-  class: "io.parrot.kafka.connect.kudu.KuduSinkConnector",
-  docs: "io.parrot.kafka.connect.kudu.KuduSinkConnector.html"
+  class: "io.parrot.kafka.connect.kudu.sink.KuduSinkConnector",
+  docs: "io.parrot.kafka.connect.kudu.sink.KuduSinkConnector.html"
  }
 ];
 
