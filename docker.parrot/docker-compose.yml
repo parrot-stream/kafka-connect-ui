@@ -13,7 +13,7 @@ services:
     environment:
       CONNECT_URL: http://kafka:8083
       PROXY: "true"
-      PORT: 8000
+      PORT: "8000"
 networks:
   default:
     external:

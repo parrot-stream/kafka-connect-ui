@@ -2,8 +2,6 @@ FROM alpine
 
 MAINTAINER Matteo Capitanio <matteo.capitanio@gmail.com>
 
-ENV KAFKA_CONNECT_UI_VER 0.9.2
-
 ENV CADDY_VER 0.10.14
 
 # Install needed packages
@@ -20,7 +18,8 @@ RUN wget "https://github.com/mholt/caddy/releases/download/v${CADDY_VER}/caddy_v
     && tar xzf caddy.tgz -C /caddy \
     && rm -f /caddy.tgz
 
-RUN npm install -g bower
+RUN npm i npm@latest -g; \
+    npm install -g bower
 RUN adduser parrot -D -h /kafka-connect-ui; \
     chown parrot:parrot /kafka-connect-ui
     
@@ -38,13 +37,13 @@ WORKDIR /
 
 USER root
 
-ADD docker/etc/ /etc/
-ADD docker/Caddyfile.template /caddy/
-ADD docker/start-kafka-connect-ui.sh /
-ADD docker/supervisord-bootstrap.sh /
+ADD docker.parrot/etc/ /etc/
+ADD docker.parrot/Caddyfile.template /caddy/
+ADD docker.parrot/*.sh /
 RUN chmod o=rx /*.sh; \
     chmod o=rxw /caddy
-RUN chown parrot:parrot -R /kafka-connect-ui
+RUN chown parrot:parrot -R /kafka-connect-ui; \
+    chown parrot:parrot -R /caddy/Caddyfile.template
 
 USER parrot
 

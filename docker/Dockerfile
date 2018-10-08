@@ -1,9 +1,9 @@
 FROM alpine
-MAINTAINER Matteo Capitanio <marios@landoop.com>
+MAINTAINER Marios Andreopoulos <marios@landoop.com>
 
 WORKDIR /
 # Add needed tools
-RUN apk add --no-cache ca-certificates wget bash \
+RUN apk add --no-cache ca-certificates wget \
     && echo "progress = dot:giga" | tee /etc/wgetrc
 
 # Add and Setup Caddy webserver
