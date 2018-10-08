@@ -1,19 +1,20 @@
 version: '3'
 services:
   kafka-connect-ui:
+    container_name: kafka-connect-ui
     build:
       context: ..
       dockerfile: Dockerfile
-    image: parrotstream/kafka-connect-ui:0.9.2
-    networks:
-    - hadoop
+    image: parrotstream/kafka-connect-ui:0.9.6
+    external_links:
+    - kafka
     ports:
     - 8000:8000
     environment:
-      CONNECT_URL: http://kafka-connect:8083
+      CONNECT_URL: http://kafka:8083
+      PROXY: "true"
+      PORT: 8000
 networks:
   default:
     external:
-      name: hadoop
-  hadoop:
-    driver: bridge
+      name: parrot_default

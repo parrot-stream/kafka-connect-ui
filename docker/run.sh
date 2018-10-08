@@ -17,7 +17,7 @@ PORT="${PORT:-8000}"
         echo "We will fall back to default http://localhost:8083 which probably won't work."
         echo
     fi
-    CONNECT_URL="${CONNECT_URL:-http://kafka:8083}"
+    CONNECT_URL="${CONNECT_URL:-http://localhost:8083}"
 
     cat /caddy/Caddyfile.template |
         sed -e "s/8000/$PORT/" > /caddy/Caddyfile
