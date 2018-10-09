@@ -15,7 +15,7 @@ services:
       PORT: 8000
       PROXY: "true"
       PROXY_SKIP_VERIFY: "false"
-      KAFKA_TOPICS_UI_ENABLED: "false"
+      KAFKA_TOPICS_UI_ENABLED: "true"
       KAFKA_TOPICS_UI: http://kafka-topics-ui:8001
       CADDY_OPTIONS:
 networks:
