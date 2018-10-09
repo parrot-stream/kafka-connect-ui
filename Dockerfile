@@ -6,7 +6,7 @@ ENV CADDY_VER 0.10.14
 
 # Install needed packages
 RUN apk update; \
-    apk add --no-cache -u ca-certificates python py-pip git wget nodejs-npm bash; \
+    apk add --no-cache -u ca-certificates python py-pip git wget nodejs-npm bash sudo curl; \
     echo "progress = dot:giga" | tee /etc/wgetrc
 RUN pip install supervisor
 
@@ -29,6 +29,7 @@ WORKDIR /kafka-connect-ui
 
 ADD src src
 ADD *.* ./
+#ADD docker.parrot/env.js ./
 RUN npm install
 RUN npm run-script postinstall
 RUN npm run-script build

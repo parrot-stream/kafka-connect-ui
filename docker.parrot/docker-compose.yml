@@ -11,9 +11,13 @@ services:
     ports:
     - 8000:8000
     environment:
-      CONNECT_URL: http://kafka:8083
+      CONNECT_URL: http://kafka:8083;parrot
+      PORT: 8000
       PROXY: "true"
-      PORT: "8000"
+      PROXY_SKIP_VERIFY: "false"
+      KAFKA_TOPICS_UI_ENABLED: "false"
+      KAFKA_TOPICS_UI: http://kafka-topics-ui:8001
+      CADDY_OPTIONS:
 networks:
   default:
     external:

@@ -1,83 +1,59 @@
-# Kafka Connect UI
+# **kafka-connect-ui**
+___
 
-This is the source fork of a web tool for Kafka Connect for setting up and managing connectors for multiple connect clusters.
+### Description
+___
 
-## Run standalone with docker
+This image runs [**Kafka Connect UI**](https://github.com/Landoop/kafka-connect-ui.git).
 
-```
-docker run --rm -it -p 8000:8000 \
-           -e "CONNECT_URL=http://connect.distributed.url" \
-           parrot/kafka-connect-ui
-```
 
-The CONNECT_URL can be a comma separated array of Connect worker endpoints. E.g: CONNECT_URL=http://connect.1.url,http://connect.2.url"
+You can pull it with:
 
-Web UI will be available at `http://localhost:8000`
+    docker pull parrotstream/kafka-connect-ui
 
-## Run standalone with docker-compose
 
-```
-docker-compose -f docker/docker-compose.yml up
-```
+You can also find other images based on different Kafka Connect UI releases, using a different tag in the following form:
 
-## Build from source
+    docker pull parrotstream/kafka-connect-ui:[kafka-connect-ui-release]
 
-```
-    git clone https://github.com/parrotcdc/kafka-connect-ui.git
-    cd kafka-connect-ui
-    npm install
-    http-server .
-```
-Web UI will be available at `http://localhost:8080`
 
-### Nginx config
+Start with Docker Compose:
 
-If you use `nginx` to serve this ui, let angular manage routing with
-```
-    location / {
-        try_files $uri $uri/ /index.html =404;
-        root /folder-with-kafka-connect-ui/;
-    }
-```
+    docker-compose -p parrot -f docker.parrot/docker-compose.yml up
 
-### Setup connect clusters
+## Configuration
 
-Use multiple Kafka Connect clusters in `env.js` :
-```
-var clusters = [
-   {
-     NAME:"prod", //unique name is required
-     KAFKA_CONNECT: "http://kafka-connect.prod.url", //required
-     KAFKA_TOPICS_UI: "http://kafka-topics-ui.url", //optional
-     KAFKA_TOPICS_UI_ENABLED: true //optional
-     COLOR: "#141414" //optional
-   },
-   {
-     NAME:"dev",
-     KAFKA_CONNECT: "http://kafka-connect.dev.url",
-     KAFKA_TOPICS_UI_ENABLED: false
-   },
-   {
-     NAME:"local",
-     KAFKA_CONNECT: "http://kafka-connect.local.url",
-   }
-]
+In the docker-compose.yml you can update the following environment variables:
 
-```
-* Use `KAFKA_TOPICS_UI` and `KAFKA_TOPICS_UI_ENABLED` to navigate to the relevant topic when you have [kafka-topics-ui](https://github.com/parrotcdc/kafka-topics-ui) installed.
-* Use `COLOR` to set different header colors for each set up cluster.
+  - `CONNECT_URL` [`connect.cluster.1.url`;`name`]: a comma separated array of Connect worker endpoints (url and name')
+  - `PORT` [`PORT`]: the docker internal port to expose the Kafka Connect UI. Remember to change the port mapping in the docker-compose.yml
+  - `PROXY` [`true`|`false`]: whether to proxy Connect endpoints via the internal webserver. This option is by default set to true as older versions of Connect do not support CORS, so there isn't another way to make the UI work. If you have a recent Connect (0.11 or 1.0) and permit CORS, you can disable the proxying feature
+  - `PROXY_SKIP_VERIFY` [`true`|`false`]: whether to accept self-signed certificates when proxying Connect via https
+  - `KAFKA_TOPICS_UI_ENABLED` [`true`|`false`]: set to `true` if you want to navigate to the relevant topic when you have *kafka-topics-ui* running.
+  - `KAFKA_TOPICS_UI`: the URL of a running **Kafka Topics UI**
+  - `CADDY_OPTIONS`: the webserver that powers the image is Caddy. Via this variable you can add options that will be appended to its configuration (Caddyfile)
+  
+Once started you'll be able to access to the following UI:
 
-### Supported Connectors
-There is a template of metadata within the `supported-connectors.js`: in any case you will be shown all the existing connectors in your classpath with all the required fields to set them up.
+| **Kafka Connect UI**        |**URL**                   |
+|:----------------------------|:-------------------------|
+| *Kafka Connect UI*          | http://localhost:8000    |
 
-## Changelog
-[Here](https://github.com/parrotcdc/kafka-connect-ui/releases)
+
+## Relevant Projects
+
+* [Schema Registry UI](https://github.com/parrot-stream/schema-registry-ui), View, create, evolve and manage your Avro Schemas on your Kafka cluster
+* [Kafka Topics UI](https://github.com/parrot-stream/kafka-topics-ui), UI to browse Kafka data and work with Kafka Topics
+
+## Supported Connectors
+
+There is a template of metadata within the `src/supported-connectors.js`: in any case you will be shown all the existing connectors in your classpath with all the required fields to set them up.
 
 ## License
 
 The project is licensed under the [BSL](http://www.landoop.com/bsl) license.
 
-## Relevant Projects
 
-* [Schema Registry UI](https://github.com/parrotcdc/schema-registry-ui), View, create, evolve and manage your Avro Schemas on your Kafka cluster
-* [Kafka Topics UI](https://github.com/parrotcdc/kafka-topics-ui), UI to browse Kafka data and work with Kafka Topics
+## Available tags:
+
+- Kafka Connect UI 0.9.6 ([0.9.6](https://github.com/parrot-stream/kafka-connect-ui/blob/0.9.6/Dockerfile), [latest](https://github.com/parrot-stream/kafka-connect-ui/blob/latest/Dockerfile))

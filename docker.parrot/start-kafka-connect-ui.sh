@@ -8,7 +8,7 @@ PORT="${PORT:-8000}"
 
 {
     echo "Landoop Kafka Connect UI ${KAFKA_CONNECT_UI_VERSION}"
-    echo "Visit <https://github.com/Landoop/kafka-connect-ui/tree/master/docker>"
+    echo "Visit <https://github.com/parrot-stream/kafka-connect-ui>"
     echo "to find more about how you can configure this container."
     echo
 
@@ -38,7 +38,7 @@ PORT="${PORT:-8000}"
         let "NUM_CLUSTER+=1"
         if [[ "$NUM_CLUSTER" == 1 ]]; then
             OPEN_CURL="{"
-            cat <<EOF >/kafka-connect-ui/env.js
+            cat <<EOF >/kafka-connect-ui/dist/env.js
 var clusters = [
 EOF
         fi
@@ -61,7 +61,7 @@ proxy /api/$CLUSTER_SANITIZED_NAME $CLUSTER_URL {
     $INSECURE_PROXY
 }
 EOF
-            cat <<EOF >>/kafka-connect-ui/env.js
+            cat <<EOF >>/kafka-connect-ui/dist/env.js
    $OPEN_CURL
      NAME: "$CLUSTER_NAME",
      KAFKA_CONNECT: "/api/$CLUSTER_SANITIZED_NAME"
@@ -76,7 +76,7 @@ EOF
 EOF
         fi
     done
-    echo "]" >> /kafka-connect-ui/env.js
+    echo "]" >> /kafka-connect-ui/dist/env.js
 
     if [[ -n "${CADDY_OPTIONS}" ]]; then
         echo "Applying custom options to Caddyfile"
